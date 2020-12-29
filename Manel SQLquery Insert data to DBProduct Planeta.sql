@@ -4,9 +4,9 @@
 --NOTA: Todos los comentarios en código se harán por norma en Inglés esto unifica el trabajo en equipos internacionales así como los
 -- nombres de las bases de datos, las tablas y campos 
 
-IF EXISTS ( SELECT [name] FROM sys.databases WHERE [name] = 'DB_Products' )
+IF EXISTS ( SELECT [name] FROM sys.databases WHERE [name] = 'DBProducts' )
 	BEGIN
-	use DB_Products
+	use DBProducts
 	--Creating Table Product
 	IF NOT EXISTS ( SELECT [name] FROM sys.tables WHERE [name] = 'Product' )
 		BEGIN
