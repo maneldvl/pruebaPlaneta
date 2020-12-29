@@ -6,8 +6,8 @@
 -- nombres de las bases de datos, las tablas y campos 
 
 
-IF NOT EXISTS ( SELECT [name] FROM sys.databases WHERE [name] = 'DB_Products' )
+IF NOT EXISTS ( SELECT [name] FROM sys.databases WHERE [name] = 'DBProducts' )
 	BEGIN
-	CREATE DATABASE DB_Products
+	CREATE DATABASE DBProducts
 	END
 
