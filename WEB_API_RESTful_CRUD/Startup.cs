@@ -13,8 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WEB_API_RESTful_CRUD.Context;
 using Microsoft.Extensions.Options;
+using WEB_API_RESTful_CRUD.Contexts;
+using System.Web.Http;
+
 
 namespace WEB_API_RESTful_CRUD
 {
@@ -30,11 +32,17 @@ namespace WEB_API_RESTful_CRUD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Manel 12/2020
-            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PlanetaDbConnectionString")));
-            services.AddControllers();
-            IServiceCollection serviceCollections = services.AddSwaggerGen(c =>
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WEB API RESTful Core 5 CRUD for Planeta by © Manel de Vicente", Version = "v1" }));
+            //Manel 01/2021
+            services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddDbContext<WebApiRESTfulDbContext>
+               (options => options.UseSqlServer(Configuration.GetConnectionString("ProductsDbConnectionString")));
+            //Se agrega en generador de Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                { Title = "API RESTful Corev5 by © Manel de Vicente", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,9 +51,17 @@ namespace WEB_API_RESTful_CRUD
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WEB API RESTful Core 5 CRUD for Planeta by © Manel de Vicente v1"));
             }
+            //Habilitar swagger
+            app.UseSwagger();
+
+            //indica la ruta para generar la configuración de swagger
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API RESTful Corev5 by © Manel de Vicente");
+                //c.RoutePrefix = string.Empty;
+            });
+            //app.UseMvc();
 
             app.UseHttpsRedirection();
 
