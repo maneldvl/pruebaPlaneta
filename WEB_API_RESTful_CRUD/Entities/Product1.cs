@@ -11,9 +11,9 @@ namespace WEB_API_RESTful_CRUD.Entities
         [Key]
         public int Product_ID { get; set; }
 
-        public String Product_Name { get; set; }
-        public String Product_REF { get; set; }
-        public Double Product_Price { get; set; }
+        public string Product_Name { get; set; }
+        public string Product_REF { get; set; }
+        public double Product_Price { get; set; }
         public DateTime Product_Creation_Date { get; set; }
     }
 }

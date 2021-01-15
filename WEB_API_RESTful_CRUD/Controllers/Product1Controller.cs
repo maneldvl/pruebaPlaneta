@@ -68,28 +68,113 @@ namespace WEB_API_RESTful_CRUD.Entities
 
         }
 
+        //// POST api/<Product1Controller>
+        //[HttpPost]
+        //public string Post([FromBody] string value)
+        //{
+        //    string verbname = "Post value = " + value;
+        //    return verbname;
+        //}
+
+        /// <summary>
+        /// This method POST insert one product1 register on table
+        /// </summary>
+        /// <param name="Product1_var"></param>
+        /// <returns></returns>
         // POST api/<Product1Controller>
         [HttpPost]
-        public string Post([FromBody] string value)
+        public ActionResult Post([FromBody] Product1 Product1_var)
         {
-            string verbname = "Post value = " + value;
-            return verbname;
+            try
+            {
+                context.Product1.Add(Product1_var);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                string errormissage = ex.ToString();
+                return BadRequest();
+            }
+
         }
 
+        //// PUT api/<Product1Controller>/5
+        //[HttpPut("{id}")]
+        //public string Put(int id, [FromBody] string value)
+        //{
+        //    string verbname = "Put value id = " + id.ToString() + " ; value = " + value;
+        //    return verbname;
+        //}
+
+        /// <summary>
+        /// This methos make a Put this is one Update register id 
+        /// on Product1 table
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Product1_var"></param>
+        /// <returns></returns>
         // PUT api/<Product1Controller>/5
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] Product1 Product1_var)
         {
-            string verbname = "Put value id = " + id.ToString() + " ; value = " + value;
-            return verbname;
+
+            try
+            {
+                if (Product1_var.Product_ID == id)
+                {
+                    context.Entry(Product1_var).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
         }
 
+        /// <summary>
+        /// This method DELETE one register look for your id register
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE api/<Product1Controller>/5
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public ActionResult Delete(int id)
         {
-            string verbname = "Delete value id = " + id.ToString();
-            return verbname;
+            try
+            {
+                Product1 Product1_reg = context.Product1.FirstOrDefault(x => x.Product_ID == id);
+                if (Product1_reg != null)
+                {
+                    context.Product1.Remove(Product1_reg);
+                    context.SaveChanges();
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
         }
+
+        //// DELETE api/<Product1Controller>/5
+        //[HttpDelete("{id}")]
+        //public string Delete(int id)
+        //{
+        //    string verbname = "Delete value id = " + id.ToString();
+        //    return verbname;
+        //}
     }
 }

@@ -59,7 +59,7 @@ namespace WEB_API_RESTful_CRUD
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API RESTful Corev5 by © Manel de Vicente");
-                //c.RoutePrefix = string.Empty;
+                //c.RoutePrefix = string.Empty; //This is for if do you want user Postman and not Swagger on url direction
             });
             //app.UseMvc();
 
