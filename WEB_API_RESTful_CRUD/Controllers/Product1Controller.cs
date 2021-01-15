@@ -77,6 +77,7 @@ namespace WEB_API_RESTful_CRUD.Entities
         //}
 
         /// <summary>
+        /// Manel01/2021
         /// This method POST insert one product1 register on table
         /// </summary>
         /// <param name="Product1_var"></param>
@@ -108,6 +109,7 @@ namespace WEB_API_RESTful_CRUD.Entities
         //}
 
         /// <summary>
+        /// Manel01/2021
         /// This methos make a Put this is one Update register id 
         /// on Product1 table
         /// </summary>
@@ -139,7 +141,16 @@ namespace WEB_API_RESTful_CRUD.Entities
 
         }
 
+        //// DELETE api/<Product1Controller>/5
+        //[HttpDelete("{id}")]
+        //public string Delete(int id)
+        //{
+        //    string verbname = "Delete value id = " + id.ToString();
+        //    return verbname;
+        //}
+
         /// <summary>
+        /// Manel01/2021
         /// This method DELETE one register look for your id register
         /// </summary>
         /// <param name="id"></param>
@@ -168,13 +179,5 @@ namespace WEB_API_RESTful_CRUD.Entities
             }
 
         }
-
-        //// DELETE api/<Product1Controller>/5
-        //[HttpDelete("{id}")]
-        //public string Delete(int id)
-        //{
-        //    string verbname = "Delete value id = " + id.ToString();
-        //    return verbname;
-        //}
     }
 }
